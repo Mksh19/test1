@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<h1>Mukesh</h1>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<Script>
+function getAllinfo(){
+	$.ajax({
+		url:"http://localhost:8080/all",
+        method:"GET",
+        Sucess:function(data){
+        	var txt="";
+        for(var i=o;i<data.length;i++){
+        	varbtnTxt = "<td><button type=button class='editbtn'>Update</button></td><td><button type=button class='deletebtn'>Delete</button></td>";
+        	var line = "<tr id="+data[i].id+"><td>"+data[i].name+"</td><td>"+data[i].salary+"</td>"+btnTxt+"</tr>";
+        	txt=txt+line;
+        }
+        	$("#tableemp").append(txt);
+            },
+            error:function(error)
+            {
+            	alert("list error occured")
+            }
+	});
+}
+	$(document).ready(function(){
+		alert("hi");
+		getAllinfo();
+	});
+}
+</Script>
+</head>
+<body>
+<h1>Welcome to curd</h1>
+<div>
+<table id="tableemp" border="1">
+<tr>
+<th>Name</th>
+<th>Salary</th>
+<th colspan=2, align="center">Actions</th>
+<tr>
+</table>
+<br>
+<br>
+<input type="button" value ="Add" id="addbtn">
+</div>
+<br>
+<br>
+<div id="adddiv">
+Employee Name:<input type = "text" id="addname">
+<br>
+<br>
+Employee Salary:<input type="text" id="addsal">
+<br>
+<br>
+<input type="button" id="Savebtn" value="Save">
+<input type="button" id="cancelbtn" value="Cancel"> 
+</div>
+</body>
+</html>
